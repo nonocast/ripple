@@ -1,164 +1,96 @@
-<style>
-  :root{
-    --bg:#ffffff;
-    --fg:#0b0f18;
-    --muted:#6b7280;
-    --line:rgba(15, 23, 42, .08);
-    --chip:rgba(15, 23, 42, .06);
-    --surface: rgba(15, 23, 42, .03);
-    --shadow: 0 1px 0 rgba(15,23,42,.06);
-    --radius:16px;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0b0f18;
-      --fg:#eef2ff;
-      --muted:#9aa4b2;
-      --line:rgba(226, 232, 240, .10);
-      --chip:rgba(226, 232, 240, .10);
-      --surface: rgba(226, 232, 240, .06);
-      --shadow: 0 1px 0 rgba(226,232,240,.08);
-    }
-  }
+---
+import "../styles/global.css";
 
-  *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--fg);
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  }
+const signals = [
+  {
+    rank: 1,
+    title: "Claude Code: Skills vs Tools",
+    publishedAt: "2026-02-16",
+    url: "https://example.com",
+  },
+  {
+    rank: 2,
+    title: "Gemini 1.5 Web Design in AI Studio",
+    publishedAt: "2026-02-16",
+    url: "https://example.com",
+  },
+  {
+    rank: 3,
+    title: "xbench: Agent benchmark as a product",
+    publishedAt: "2026-02-15",
+    url: "https://example.com",
+  },
+  {
+    rank: 4,
+    title: "Open-source eval datasets for coding agents",
+    publishedAt: "2026-02-15",
+    url: "https://example.com",
+  },
+  {
+    rank: 5,
+    title: "How small teams ship better product loops",
+    publishedAt: "2026-02-14",
+    url: "https://example.com",
+  },
+];
+---
 
-  .wrap{ max-width: 1040px; margin: 0 auto; padding: 44px 20px 84px; }
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ripple</title>
+  </head>
 
-  header{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:16px;
-    margin-bottom: 18px;
-  }
+  <body class="bg-[#fafafa] text-[#111] antialiased">
+    <main class="mx-auto max-w-[720px] px-5 pb-16 pt-12">
+      <header class="mb-8 flex items-end justify-between gap-4 border-b border-zinc-200 pb-4">
+        <div>
+          <h1 class="text-[20px] font-semibold leading-[1.35] tracking-[-0.01em]">Ripple</h1>
+          <p class="mt-1 text-[13px] leading-[1.6] text-[#666]">Signals for AI builders</p>
+        </div>
 
-  .brand{ display:flex; flex-direction:column; gap:6px; }
-  .brand h1{
-    margin:0;
-    font-size:20px;
-    letter-spacing:-0.03em;
-    line-height:1.2;
-  }
-  .brand p{
-    margin:0;
-    color:var(--muted);
-    font-size:12.5px;
-    letter-spacing:-0.01em;
-  }
+        <nav class="flex items-center gap-4 text-[13px] text-[#666]">
+          <a href="#" class="transition hover:text-[#2f5fbf] hover:underline">About</a>
+          <a href="#" class="transition hover:text-[#2f5fbf] hover:underline">GitHub</a>
+        </nav>
+      </header>
 
-  .controls{ display:flex; gap:10px; align-items:center; }
-  .search{
-    width: 360px;
-    max-width: 56vw;
-    padding: 10px 12px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    color: var(--fg);
-    outline: none;
-    transition: border-color .12s ease, background .12s ease, box-shadow .12s ease;
-  }
-  .search::placeholder{ color: color-mix(in srgb, var(--muted) 82%, transparent); }
-  .search:focus{
-    background: transparent;
-    border-color: color-mix(in srgb, var(--fg) 22%, var(--line));
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fg) 8%, transparent);
-  }
+      <section>
+        <table class="w-full border-separate border-spacing-0">
+          <thead>
+            <tr>
+              <th class="w-12 border-b border-zinc-200 py-2 text-left text-[13px] font-normal text-[#666]">#</th>
+              <th class="border-b border-zinc-200 py-2 text-left text-[13px] font-normal text-[#666]">Title</th>
+              <th class="w-28 border-b border-zinc-200 py-2 text-right text-[13px] font-normal text-[#666]">Published</th>
+            </tr>
+          </thead>
 
-  .card{
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-    overflow:hidden;
-    box-shadow: var(--shadow);
-    background: transparent;
-  }
+          <tbody>
+            {signals.map((s) => (
+              <tr>
+                <td class="border-b border-zinc-100 py-3 pr-2 align-top text-[13px] leading-[1.6] text-[#666]">{s.rank}</td>
 
-  table{ width:100%; border-collapse:separate; border-spacing:0; }
-  thead th{
-    text-align:left;
-    font-size:11px;
-    font-weight:600;
-    color:var(--muted);
-    padding: 11px 16px;
-    border-bottom:1px solid var(--line);
-    background: transparent; /* 关键：去掉重灰块 */
-    letter-spacing: .02em;
-    text-transform: none;
-  }
+                <td class="border-b border-zinc-100 py-3 pr-3 align-top">
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    class="text-[18px] font-semibold leading-[1.35] tracking-[-0.01em] text-[#111] transition hover:text-[#2f5fbf] hover:underline"
+                  >
+                    {s.title}
+                  </a>
+                </td>
 
-  tbody td{
-    padding: 14px 16px;
-    border-bottom:1px solid var(--line);
-    vertical-align:middle;
-    font-size:14px;
-  }
+                <td class="border-b border-zinc-100 py-3 text-right align-top text-[13px] leading-[1.6] text-[#666] tabular-nums">
+                  {s.publishedAt}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
-  tbody tr{
-    transition: background .12s ease; /* 关键：丝滑 */
-  }
-  tbody tr:hover{
-    background: color-mix(in srgb, var(--bg) 92%, var(--fg) 8%);
-  }
-  tbody tr:last-child td{ border-bottom:none; }
-
-  a.title{
-    color:var(--fg);
-    text-decoration:none;
-    font-weight:600;
-    letter-spacing:-0.015em;
-  }
-  a.title:hover{ text-decoration:underline; }
-
-  .meta{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:6px; }
-  .chip{
-    display:inline-flex;
-    align-items:center;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--chip);
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1;
-  }
-
-  .score{
-    font-variant-numeric: tabular-nums;
-    font-weight: 700;
-    letter-spacing:-0.01em;
-  }
-
-  /* mobile: table -> cards */
-  @media (max-width: 720px){
-    thead{ display:none; }
-    table, tbody, tr, td{ display:block; width:100%; }
-    tbody td{ border-bottom:none; padding: 14px 16px; }
-    tbody tr{ border-bottom:1px solid var(--line); }
-    tbody tr:last-child{ border-bottom:none; }
-    .row{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
-    .right{ text-align:right; min-width:72px; }
-    .search{ width: 220px; }
-  }
-
-  footer{
-    margin-top: 16px;
-    color: var(--muted);
-    font-size: 12px;
-    display:flex;
-    justify-content:space-between;
-    gap: 12px;
-    flex-wrap:wrap;
-  }
-  .kbd{
-    border:1px solid var(--line);
-    padding:2px 6px;
-    border-radius:8px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-</style>
+      <footer class="mt-6 text-[12px] leading-[1.6] text-[#666]">© 2026 Ripple</footer>
+    </main>
+  </body>
+</html>
